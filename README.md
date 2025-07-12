@@ -19,7 +19,7 @@ A modern, performant, and SEO-friendly blog built with Next.js 13+, MDX, and Tai
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 13+
+- **Framework**: Next.js 15.3.5+
 - **Styling**: Tailwind CSS
 - **Content**: MDX
 - **Icons**: Lucide React

@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
-  title: "Saf Blogs | Interactive Learning",
+  title: "SAFWAT BLOGS | Interactive Learning",
   description: "A collection of technical blogs and documentation.",
 };
 
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="flex items-center gap-6">
                     <Link href="/" className="flex items-center space-x-2 font-bold text-lg">
                       <BookOpen className="h-6 w-6 text-primary" />
-                      <span>Saf Blogs</span>
+                      <span>Safwat Blogs</span>
                     </Link>
                     <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
                       <Link 
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="container px-4 sm:px-6 lg:px-8 py-6 mx-auto">
                 <div className="flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
                   <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                    {new Date().getFullYear()} Saf Blogs. All rights reserved.
+                    {new Date().getFullYear()} Safwat Blogs. All rights reserved.
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Created with ❤️ by Safwat

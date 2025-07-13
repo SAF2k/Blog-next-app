@@ -1,0 +1,170 @@
+---
+title: 🪢 Cabling and Network Topology
+description: Comprehensive guide on network topologies, cable types, connectors, standards, and fire ratings.
+---
+
+# 🌐 Cabling and Network Topology
+
+Understanding how data travels across physical and logical networks is essential for designing, troubleshooting, and maintaining IT infrastructure. This guide covers:
+
+- Network Topologies  
+- Cable Types (Coaxial, Twisted Pair, Fiber Optic)  
+- Connectors and Standards  
+- Fire Safety Ratings
+
+---
+
+## 🕸️ Network Topology
+
+**Topology** describes the structure and layout of network connections, both **physical** and **logical**.
+
+### 📌 Common Topologies
+
+| Topology        | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| Point-to-Point  | Direct connection between two devices                                        |
+| Star            | All devices connect to a central hub or switch                              |
+| Mesh            | Devices are interconnected (full or partial mesh)                           |
+| Hybrid          | Combination of two or more topologies                                       |
+| Logical         | How data flows regardless of physical layout                                |
+| Spine and Leaf  | Used in data centers; scalable and low-latency                              |
+
+---
+
+## 🏗️ Network Architectures
+
+- **Client-Server**: Centralized server provides services to clients  
+- **Peer-to-Peer (P2P)**: Devices share resources equally  
+- **Distributed Architecture**: Services are spread across multiple nodes  
+- **Data Center Fabric (Spine-Leaf)**: Used in high-speed environments
+
+---
+
+## 🔌 Coaxial Cables
+
+### 🧵 Structure
+
+- Central copper core  
+- Dielectric insulator  
+- Shielding (braid or foil)  
+- Outer jacket
+
+### 📦 Types
+
+| Type     | Use Case                       |
+|----------|--------------------------------|
+| `RG-6`   | Cable TV, satellite, broadband |
+| `RG-59`  | CCTV, low-frequency video      |
+| `RG-11`  | Long-distance, less signal loss|
+
+### 🔗 Connectors
+
+- `BNC` – CCTV, broadcast  
+- `F-type` – Cable TV  
+- `DAC` (Direct Attach Copper) – High-speed short links in data centers
+
+### ✅ Pros and ❌ Cons
+
+**Advantages**  
+- Shielded against EMI  
+- Durable and easy to install  
+
+**Disadvantages**  
+- Bulky  
+- Limited bandwidth  
+- Not ideal for modern high-speed networks
+
+---
+
+## 🧵 Twisted Pair Cables
+
+### ⚡ EMI Protection
+
+- Twisting reduces **Electromagnetic Interference (EMI)**  
+- Comes in **Shielded (STP)** and **Unshielded (UTP)** types
+
+### 📏 Distance
+
+- Typical maximum length: `100 meters (328 feet)`
+
+### 🧩 Connectors
+
+- `RJ-45` – Ethernet  
+- `RJ-11` – Telephone
+
+### 🧪 Standards
+
+| Category | Speed         | Frequency  | Use                               |
+|----------|---------------|------------|-----------------------------------|
+| Cat 5    | `100 Mbps`    | `100 MHz`  | Older Ethernet                    |
+| Cat 5e   | `1 Gbps`      | `100 MHz`  | Enhanced crosstalk control        |
+| Cat 6    | `1–10 Gbps`   | `250 MHz`  | High-speed Ethernet               |
+| Cat 6a   | `10 Gbps`     | `500 MHz`  | Shielded for EMI resistance       |
+| Cat 7    | `10 Gbps`     | `600 MHz`  | Heavily shielded, less common     |
+| Cat 8    | `25–40 Gbps`  | `2000 MHz` | Short runs in data centers        |
+
+---
+
+## 🧬 Fiber Optic Cables
+
+### 🔍 Types
+
+| Type        | Core Size   | Distance        | Light Source     |
+|-------------|-------------|-----------------|------------------|
+| Single-Mode | `8–10 µm`   | Long (`>10 km`) | Laser            |
+| Multi-Mode  | `50–62.5 µm`| Short (`<2 km`) | LED              |
+
+### 🎨 Cable Colors
+
+| Color     | Mode                          |
+|-----------|-------------------------------|
+| Yellow    | Single-mode                   |
+| Orange    | Multi-mode `OM1/OM2`          |
+| Aqua      | Multi-mode `OM3/OM4`          |
+
+### 🔗 Connectors
+
+| Connector | Type        | Description                         |
+|-----------|-------------|-------------------------------------|
+| ST        | Bayonet     | Push & twist, older installations   |
+| SC        | Push-pull   | Square shape, datacenter use       |
+| FC        | Threaded    | Industrial use, vibration resistant|
+| LC        | Small-form  | Common modern duplex connection    |
+| MTRJ      | Compact     | Duplex in a single connector       |
+
+### 🔁 Polishing Types
+
+- `UPC` (Ultra Physical Contact): Blue, low return loss  
+- `APC` (Angled Physical Contact): Green, even lower return loss, better for video & long fiber runs
+
+### ⚙️ How Fiber Works
+
+- Light pulses travel through the glass core  
+- Internal reflection keeps the light contained  
+- Immune to EMI, supports ultra-high-speed over long distances
+
+---
+
+## 🔥 Fire Safety Ratings – Cable Jacket Types
+
+| Rating        | Use Case              | Description                                 |
+|---------------|-----------------------|---------------------------------------------|
+| Plenum        | Air ducts/ceilings    | Highest fire safety, low-smoke, flame-retardant |
+| Riser         | Between floors        | Fire-resistant, not for air ducts           |
+| Non-Plenum    | Open spaces           | No fire safety requirements                 |
+
+> 🧯 Always follow **local building codes**. Use **Plenum-rated** cables in air-handling spaces like ceiling voids.
+
+---
+
+## ✅ Summary
+
+| Cable Type     | Max Distance | EMI Resistant | Cost      | Use Cases                        |
+|----------------|--------------|----------------|-----------|----------------------------------|
+| Coaxial        | `~500m`      | Medium         | Low       | CCTV, legacy cable TV/internet   |
+| Twisted Pair   | `100m`       | STP = Yes      | Low/Medium| LAN, VoIP, office networks       |
+| Fiber Optic    | `>10km`      | Yes            | High      | High-speed backbone, datacenters |
+
+---
+
+> 💡 Choosing the right cabling and topology improves **speed**, **scalability**, and **safety** of your network infrastructure.

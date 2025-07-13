@@ -1,0 +1,121 @@
+---
+title: 🌐 Network Models & Communication Layers
+description: Learn about OSI layers, MAC addresses, ports, and IP types—essential for understanding how networks operate.
+---
+
+# 🌐 Network Models
+
+Understanding network models is crucial to grasp how data moves across devices and networks. The most commonly used model is the **OSI (Open Systems Interconnection) model**, which organizes network functions into layered architecture.
+
+---
+
+## 🧱 The OSI Model (7 Layers)
+
+The OSI model breaks down network communication into 7 layers:
+
+1. **🧍 Application Layer (Layer 7)**  
+   Interfaces directly with the user. Protocols: HTTP, FTP, DNS
+
+2. **🪄 Presentation Layer (Layer 6)**  
+   Formats data — encryption, compression, encoding.
+
+3. **🎭 Session Layer (Layer 5)**  
+   Manages sessions and connections between systems.
+
+4. **🚛 Transport Layer (Layer 4)**  
+   Ensures end-to-end delivery. Protocols: TCP, UDP
+
+5. **🏷️ Network Layer (Layer 3)**  
+   Handles IP addressing and routing. Protocols: IP, ICMP
+
+6. **📦 Data Link Layer (Layer 2)**  
+   Manages MAC addressing and frame delivery.
+
+7. **🧾 Physical Layer (Layer 1)**  
+   Deals with raw bits — cables, signals, and transmission mediums.
+
+> 🧠 **Tip:** Think of it as a package delivery system — from preparing the item to shipping and finally handing it to the recipient.
+
+---
+
+## 🧱 What Are Frames?
+
+A **frame** is a data packet at Layer 2 (Data Link). It includes:
+- Destination & source **MAC addresses**
+- **Payload** (actual data)
+- **Error checking** info (like CRC)
+
+Frames are used in **LAN (Local Area Network)** environments for delivering data across the same network.
+
+---
+
+## 🆔 What is a MAC Address?
+
+A **MAC address** (Media Access Control) is a **unique hardware identifier** assigned to a network interface card (NIC).  
+Format: `00:1A:2B:3C:4D:5E` (48-bit address)
+
+- It operates at the **Data Link Layer**
+- Used for **local communication**
+- Cannot be routed across different networks
+
+> 🔐 Think of MAC as your device’s permanent "name tag" on a local network.
+
+---
+
+## 🔌 Ports and Services
+
+**Ports** are like virtual doors on your device, allowing it to handle multiple services and applications simultaneously. Each service communicates using a specific **port number** and protocol (TCP or UDP).
+
+Here are some common ports and the services they represent:
+
+- **HTTP (Port 80, TCP):**  
+  Used for unencrypted web traffic.
+
+- **HTTPS (Port 443, TCP):**  
+  Secure version of HTTP, used for encrypted web traffic.
+
+- **FTP (Port 21, TCP):**  
+  Used for transferring files between computers.
+
+- **DNS (Port 53, UDP/TCP):**  
+  Resolves domain names to IP addresses.
+
+- **SSH (Port 22, TCP):**  
+  Provides secure remote access to devices.
+
+> 🎯 Ports are handled by the **Transport Layer (Layer 4)** and can use either **TCP** (connection-oriented) or **UDP** (connectionless) depending on the service.
+
+---
+
+## 🌍 IP Address Types
+
+There are two main IP versions: **IPv4** and **IPv6**.
+
+### IPv4
+- Format: `192.168.1.1`
+- 32-bit address
+- ~4.3 billion possible addresses
+
+### IPv6
+- Format: `2001:0db8:85a3::8a2e:0370:7334`
+- 128-bit address
+- Designed to solve IPv4 exhaustion
+
+### IP Address Categories:
+- **Public IP** – Routable on the internet
+- **Private IP** – Used within LAN (e.g., 192.168.x.x)
+- **Static IP** – Manually assigned
+- **Dynamic IP** – Assigned via DHCP
+
+---
+
+## ✅ Summary
+
+By understanding these core networking concepts, you're building the foundation for:
+- Diagnosing network issues
+- Configuring network devices
+- Preparing for deeper networking topics
+
+---
+
+📁 **Next Up:** [Cables, Connectors & Topologies ➡️](./cables-connectors-topologies)

@@ -1,0 +1,126 @@
+---
+title: 🔀 IP Protocols – TCP/IP, UDP, IPSec, IPMC
+description: Deep dive into the key IP-based protocols including TCP, UDP, IP Multicast, and IPSec with its modes and components.
+---
+
+# 🌐 IP Protocols – TCP/IP, UDP, IPMC, and IPSec
+
+Internet communication relies on a group of protocols that define how data travels across networks. This guide explores core **IP-based protocols** including **TCP/IP**, **UDP**, **IP Multicast (IPMC)**, and **IPSec** for secure communication.
+
+---
+
+## 📦 TCP/IP Stack Overview
+
+The **TCP/IP model** is a simplified version of the OSI model with 4 layers:
+
+| Layer           | Protocols / Functions                     |
+|----------------|--------------------------------------------|
+| Application     | HTTP, FTP, DNS, SMTP, SSH, etc.           |
+| Transport       | **TCP**, **UDP**                          |
+| Internet        | **IP**, ICMP, IGMP                        |
+| Network Access  | Ethernet, Wi-Fi, PPP                      |
+
+---
+
+## 🔀 TCP vs UDP
+
+### ✅ TCP (Transmission Control Protocol)
+
+- Connection-oriented
+- Reliable delivery
+- 3-way handshake
+- Use cases: HTTP, SSH, FTP, Email
+
+### ⚡ UDP (User Datagram Protocol)
+
+- Connectionless
+- Fast but unreliable
+- Use cases: DNS, VoIP, Video Streaming, Gaming
+
+### 🔁 Quick Comparison
+
+| Feature         | TCP                          | UDP                          |
+|----------------|-------------------------------|------------------------------|
+| Connection      | Yes                           | No                           |
+| Reliability     | Guaranteed delivery           | No guarantees                |
+| Overhead        | High                          | Low                          |
+| Speed           | Slower                        | Faster                       |
+
+---
+
+## 📢 IPMC – IP Multicast
+
+**IP Multicast (IPMC)** allows a single sender to deliver data to multiple receivers simultaneously using a group address.
+
+- **Uses Class D IPs**: `224.0.0.0 – 239.255.255.255`
+- Efficient for streaming, IPTV, online conferencing
+- Common Protocols:
+  - **IGMP (Internet Group Management Protocol)** – Used by hosts to join/leave multicast groups
+  - **PIM (Protocol Independent Multicast)** – Used by routers to manage multicast traffic
+
+---
+
+## 🔐 IPSec – Internet Protocol Security
+
+**IPSec** is a suite of protocols for securing IP communications at the **Network Layer (Layer 3)**. It offers **encryption, integrity, and authentication**.
+
+---
+
+### 🔧 Modes of IPSec
+
+| Mode            | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| **Tunnel Mode** | Entire IP packet is encrypted and encapsulated in a new IP header (used between gateways) |
+| **Transport Mode** | Only the payload (not the header) is encrypted (used between end devices) |
+
+---
+
+### 🔐 IPSec Protocols
+
+#### ✅ AH – Authentication Header
+- Provides **authentication** and **integrity**
+- No encryption (data is not hidden)
+
+#### ✅ ESP – Encapsulating Security Payload
+- Provides **encryption**, **authentication**, and **integrity**
+- Supports both Tunnel and Transport modes
+
+---
+
+### 🔁 IKE – Internet Key Exchange
+
+IKE (v1/v2) is used for **establishing Security Associations (SAs)** between two endpoints.
+
+#### Key Phases:
+1. **Phase 1**: Establishes a secure IKE SA (authentication + encryption)
+2. **Phase 2**: Negotiates IPSec SAs (AH or ESP parameters)
+
+---
+
+### 🛡️ Security Associations (SAs)
+
+- A **Security Association (SA)** defines the encryption and authentication methods between two peers.
+- Each direction (inbound/outbound) has its own SA.
+- Identified by:
+  - **SPI (Security Parameter Index)**
+  - **Destination IP**
+  - **Protocol (AH or ESP)**
+
+---
+
+## 📘 Summary Table
+
+| Protocol | Layer | Purpose                         | Common Use Cases              |
+|----------|-------|----------------------------------|-------------------------------|
+| TCP      | 4     | Reliable, connection-based       | Web, email, file transfer     |
+| UDP      | 4     | Fast, connectionless             | DNS, VoIP, video/gaming       |
+| IPMC     | 3     | One-to-many communication        | IPTV, streaming, conferencing |
+| IPSec    | 3     | Secure IP communication          | VPNs, secure tunnels          |
+| AH       | 3     | Integrity and authentication     | Data origin authentication    |
+| ESP      | 3     | Encryption + authentication      | VPN encryption                |
+| IKE      | —     | SA negotiation                   | IPSec VPN setup               |
+
+---
+
+> 🧠 **Pro Tip:** IPSec works at the **IP level**, making it transparent to applications—ideal for **VPNs** and site-to-site tunnels.
+

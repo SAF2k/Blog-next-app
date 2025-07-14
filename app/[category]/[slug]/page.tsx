@@ -6,6 +6,7 @@ import { ArrowLeft, ChevronLeft, Calendar, ChevronRight, HomeIcon } from 'lucide
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import remarkGfm from 'remark-gfm';
+import MermaidChart from '@/components/MermaidChart';
 
 interface FrontMatter {
   title: string;
@@ -40,6 +41,7 @@ export async function generateMetadata(
 }
 
 const components = {
+  MermaidChart,
   h2: (props: React.HTMLProps<HTMLHeadingElement>) => (
     <h2
       className="text-3xl font-bold mt-14 mb-6 pb-2 border-b border-border/50 tracking-tight"

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+
 export const metadata: Metadata = {
   title: "SAFWAT BLOGS | Interactive Learning",
   description: "A collection of technical blogs and documentation.",

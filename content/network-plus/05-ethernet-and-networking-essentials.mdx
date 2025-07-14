@@ -1,0 +1,167 @@
+---
+title: 🔌🌐 Ethernet and Networking Essentials
+description: Learn the basics of Ethernet, standards, frame structure, cable types, devices, and how switches connect.
+---
+
+# ⚡ Ethernet and Networking Essentials
+
+Ethernet is the most widely used technology in **local area networks (LANs)**. It defines how devices communicate over wired networks using cables and frames.
+
+---
+
+## 🌐 What is Ethernet?
+
+Ethernet is a set of standards defined by **IEEE 802.3** that specify how data is formatted and transmitted across a wired LAN.
+
+### 📋 IEEE 802.3 Ethernet Standards
+
+The **IEEE 802.3** standard defines Ethernet—the most widely used wired LAN technology. Over time, several extensions and amendments have been added to support faster speeds, new media types, and advanced features.
+
+Here’s a breakdown of important IEEE 802.3 versions:
+
+| Standard     | Year       | Description                                         |
+|--------------|------------|-----------------------------------------------------|
+| 802.3        | 1983       | Original 10 Mbps Ethernet over coax (Thicknet)      |
+| 802.3a       | 1985       | 10BASE2 (Thin Ethernet)                             |
+| 802.3i       | 1990       | 10BASE-T (Twisted-pair Ethernet)                   |
+| 802.3u       | 1995       | Fast Ethernet (100 Mbps, 100BASE-TX)               |
+| 802.3z       | 1998       | Gigabit Ethernet over fiber (1000BASE-X)           |
+| 802.3ab      | 1999       | Gigabit Ethernet over copper (1000BASE-T)          |
+| 802.3ae      | 2002       | 10 Gigabit Ethernet (10GbE) over fiber             |
+| 802.3an      | 2006       | 10GBASE-T (10 GbE over twisted-pair copper)        |
+| 802.3ba      | 2010       | 40 GbE and 100 GbE standards                       |
+| 802.3bj      | 2014       | 100 GbE over backplanes and copper cables          |
+| 802.3bw      | 2015       | 100BASE-T1 for automotive and industrial use       |
+| 802.3bz      | 2016       | 2.5GBASE-T and 5GBASE-T over existing cabling      |
+| 802.3by      | 2016       | 25GBASE-R Ethernet over single-lane 25 Gbps        |
+| 802.3cd      | 2018       | 50GBASE, 100GBASE, 200GBASE Ethernet               |
+| 802.3cu      | 2020       | 100GBASE-VR and 400GBASE-VR Ethernet               |
+| 802.3ck      | 2021       | 100G/200G/400G Ethernet over electrical lanes      |
+| 802.3db      | 2022       | Short reach optical interconnects for 100G+        |
+
+> ℹ️ **Note:** Each sub-standard addresses enhancements like speed, media type (fiber, copper), connector types, or low-power applications.
+
+---
+
+### 🧠 Easy Tip:
+
+Think of **IEEE 802.3** as the **main Ethernet umbrella**, and its variants like 802.3i or 802.3u as **children** specializing in different speeds and media.
+
+---
+
+## 📦 Ethernet Frame Structure
+
+An Ethernet frame is the basic unit of data transmitted. It contains control and payload information.
+
+
+### 🧩 Frame Fields
+
+- **Preamble (7 bytes)**: Sync bits to help receiver prepare  
+- **Start Frame Delimiter (1 byte)**: Marks the start  
+- **Destination MAC (6 bytes)**: Who receives the frame  
+- **Source MAC (6 bytes)**: Who sent it  
+- **Type/Length (2 bytes)**: Type of protocol (IPv4, IPv6, etc.)  
+- **Data (46–1500 bytes)**: Actual payload  
+- **Pad**: Optional padding if data < 46 bytes  
+- **FCS (Frame Check Sequence)**: CRC for error checking
+
+### 📦 Jumbo Frame
+
+- Larger than 1500 bytes (up to 9000 bytes)
+- Used in data centers and storage networks
+
+---
+
+## 🔧 Terminating Twisted Pair Cables
+
+To build or repair cables, you need the right tools and standards.
+
+### 🧰 Tools & Components
+
+- **Crimping Tool** – Attaches connectors to cable ends  
+- **Cable Tester** – Checks wiring and signal  
+- **RJ-45 Connector (8P8C)** – Common Ethernet plug  
+- **RJ-25 Connector** – 6-position connector used for telephony  
+
+### 🎨 Color Coding Standards
+
+- **TIA/EIA-568A**  
+- **TIA/EIA-568B** (most common)
+
+
+### 🔁 Cable Types
+
+| Cable Type         | Usage                          |
+|--------------------|--------------------------------|
+| Straight-Through   | PC to Switch/Router            |
+| Crossover Cable    | PC to PC or Switch to Switch   |
+| Rollover           | Cisco console cable (rare)     |
+
+---
+
+## 🖥️ Networking Applications
+
+| Device         | Function                                                        |
+|----------------|-----------------------------------------------------------------|
+| Router         | Connects multiple networks, routes traffic                      |
+| Firewall       | Controls access to/from networks based on rules                 |
+| IDS (Intrusion Detection System) | Detects suspicious activity (passive)         |
+| IPS (Intrusion Prevention System)| Detects & blocks attacks (active)            |
+| IDPS           | Combined IDS + IPS                                              |
+| Proxy Server   | Acts as intermediary between client and internet                |
+| Load Balancer  | Distributes traffic among multiple servers                      |
+| NAS (Network Attached Storage) | File-level storage on network                  |
+| SAN (Storage Area Network)      | Block-level high-speed storage                |
+
+### ❗ False Positive vs False Negative
+
+- **False Positive**: Alert triggered, but no real threat  
+- **False Negative**: Threat happened, but no alert (very dangerous)
+
+---
+
+## 🔀 Switches vs Hubs
+
+| Feature         | Hub                          | Switch                          |
+|----------------|-------------------------------|----------------------------------|
+| Ports           | Multi-port repeater           | Smart port forwarding            |
+| Traffic Method  | Broadcast to all ports        | Sends only to destination MAC    |
+| Speed           | Shared bandwidth              | Dedicated per port               |
+| Efficiency      | Low (uses CSMA/CD)            | High (MAC table learning)        |
+
+
+
+### 🔁 CSMA/CD (used in hubs)
+
+- **Carrier Sense Multiple Access with Collision Detection**
+- Devices listen before sending and retry if collision happens
+
+
+---
+
+## 🔁 Connecting Switches
+
+### 🛠 MDI vs MDI-X
+
+- **MDI (Medium Dependent Interface)** – Used on computers
+- **MDI-X (MDI Crossover)** – Used on switches
+- Old switches required crossover cables; now most support **Auto-MDI-X**
+
+### 🔁 Switching Loops
+
+When two switches are connected in a loop, it can cause:
+
+- Infinite looping of frames  
+- Network flooding (broadcast storm)  
+- 🔥 Complete outage
+
+### 🧠 Solution: Spanning Tree Protocol (STP)
+
+- STP prevents loops by **disabling redundant links**
+- Uses **BPDU (Bridge Protocol Data Units)** to detect loops
+
+
+---
+
+> 🧠 Mastering Ethernet is key to understanding how devices communicate in wired networks. Learn the frame, cable types, and device roles for a solid foundation.
+

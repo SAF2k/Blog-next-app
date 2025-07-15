@@ -1,0 +1,93 @@
+---
+title: Deploy Your First Kubernetes Workload
+description: Learn how to deploy a simple application on your Kubernetes cluster.
+date: 2025-07-15
+---
+
+# 🚀 Step 5: Deploy Your First Kubernetes Workload
+
+Now that your cluster is ready with networking, let’s deploy a simple app to test it.
+
+---
+
+## 🧪 Deploy a Nginx Web Server
+
+Run the following command on your control plane node (`cp-node-1`):
+
+```bash
+kubectl create deployment nginx --image=nginx
+```
+
+This creates a deployment named `nginx` running the official Nginx container image.
+
+---
+
+## 🕵️‍♂️ Check Deployment Status
+
+Verify the deployment and pods are running:
+
+```bash
+kubectl get deployments
+kubectl get pods
+```
+
+You should see the `nginx` deployment with one pod in `Running` status.
+
+---
+
+## 🌐 Expose the Deployment
+
+To access the Nginx server, expose it as a service:
+
+```bash
+kubectl expose deployment nginx --port=80 --type=NodePort
+```
+
+This exposes the deployment on a random port on all nodes.
+
+---
+
+## 🔍 Find the NodePort
+
+Get the service details to find the port assigned:
+
+```bash
+kubectl get svc nginx
+```
+
+Look for the `NodePort` value under the `PORT(S)` column (e.g., `80:31234/TCP`).
+
+---
+
+## 🌍 Access the Nginx Server
+
+Open your browser and navigate to:
+
+```bash
+http://<node-ip>:<node-port>
+```
+
+Replace `<node-ip>` with your node's IP and `<node-port>` with the port from the previous step.
+
+You should see the Nginx welcome page.
+
+---
+
+## ✅ Clean Up (Optional)
+
+To delete the deployment and service:
+
+```bash
+kubectl delete service nginx
+kubectl delete deployment nginx
+```
+
+---
+
+## ⏭ Next Steps
+
+- Learn about scaling deployments
+- Set up Persistent Volumes and Storage
+- Explore advanced networking options
+
+👉 [Continue to Page 6: Scale Your Deployments →](/kubernetes-setup-on-ubuntu-22.04/08-scaling-updating-deployments)

@@ -1,0 +1,51 @@
+---
+title: Deploy Your First Workload
+description: Deploy a simple NGINX pod and service on your Kubernetes cluster.
+date: 2025-07-15
+---
+
+# 🚀 Step 5: Deploy Your First Workload
+
+With your Kubernetes cluster set up and the pod network installed, it's time to deploy a simple application.
+
+---
+
+## 📝 Create an NGINX Deployment
+
+Create a deployment with the official NGINX image:
+
+```bash
+kubectl create deployment nginx --image=nginx
+```
+
+## 🚀 Expose the Deployment
+
+Expose it as a service on port 80:
+
+```bash
+kubectl expose deployment nginx --port=80 --type=NodePort
+```
+
+## 🔍 Verify Deployment and Service
+
+Check the pods status:
+
+```bash
+kubectl get pods
+```
+
+Check the service details and port:
+
+```bash
+kubectl get svc
+```
+
+## 🔗 Access the NGINX Server
+
+Use the Node IP and the assigned NodePort to access your NGINX server via browser or curl.
+
+---
+
+## ⏭ Next Steps
+
+Continue by exploring scaling, updates, and managing your workloads.

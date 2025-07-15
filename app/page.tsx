@@ -80,7 +80,7 @@ export default async function Home() {
               Can&apos;t find what you&apos;re looking for? Our support team is here to help you with any questions or issues you might have.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact">
+              <Link href="https://safwatkhan.vercel.app/contact">
                 <Button asChild size="lg" className="gap-2">
                   <span>Contact Support</span>
                 </Button>

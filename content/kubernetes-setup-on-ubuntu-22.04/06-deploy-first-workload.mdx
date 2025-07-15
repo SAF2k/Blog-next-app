@@ -1,0 +1,68 @@
+---
+title: Deploy Your First Kubernetes Workload
+description: Learn how to deploy your first application workload on Kubernetes.
+date: 2025-07-15
+---
+
+# 🚀 Deploy Your First Kubernetes Workload
+
+Now that your cluster control plane is set up and the pod network is installed, it's time to deploy your first workload.
+
+---
+
+## 📦 Step 1: Create a Deployment
+
+Create a simple Nginx deployment using kubectl:
+
+```bash
+kubectl create deployment nginx --image=nginx
+```
+
+## 📍 Step 2: Verify the Deployment
+
+Check the status of your deployment and pods:
+
+```bash
+kubectl get deployments
+kubectl get pods
+```
+
+You should see your Nginx pod running.
+
+## 🌐 Step 3: Expose the Deployment
+
+Expose your deployment as a service to make it accessible:
+
+```bash
+kubectl expose deployment nginx --port=80 --type=NodePort
+```
+
+## 🔍 Step 4: Check the Service
+
+List your services and note the NodePort assigned:
+
+```bash
+kubectl get services
+```
+
+Access the service by visiting   
+
+```bash
+http://<node-ip>:<node-port>
+```
+
+Replace `<node-ip>` with your node's IP and `<node-port>` with the port from the previous step.
+
+## 🎉 Congratulations!
+
+You've successfully deployed your first application on Kubernetes!
+
+---
+
+## ⏭ Next Steps
+
+- Learn about scaling your deployment
+- Set up Persistent Volumes and Storage
+- Explore advanced networking options
+
+👉 [Continue to Page 6: Scale Your Deployments →](/docs/kubernetes/scale-deployments)

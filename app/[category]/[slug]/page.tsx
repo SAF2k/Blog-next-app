@@ -2,11 +2,13 @@ import Link from 'next/link';
 import { getPost } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ChevronLeft, Calendar, ChevronRight, HomeIcon } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, Calendar, ChevronRight, HomeIcon, Clock } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import remarkGfm from 'remark-gfm';
 import MermaidChart from '@/components/MermaidChart';
+import readingTime from 'reading-time';
+import CodeBlock from '@/components/CodeBlock';
 
 interface FrontMatter {
   title: string;
@@ -42,6 +44,9 @@ export async function generateMetadata(
 
 const components = {
   MermaidChart,
+  h1: (props: React.HTMLProps<HTMLHeadingElement>) => (
+    <h1 className="text-4xl font-bold mt-10 mb-4 tracking-tight text-foreground" {...props} />
+  ),
   h2: (props: React.HTMLProps<HTMLHeadingElement>) => (
     <h2
       className="text-3xl font-bold mt-14 mb-6 pb-2 border-b border-border/50 tracking-tight"
@@ -62,6 +67,15 @@ const components = {
       {...props}
     />
   ),
+  code: (props: React.HTMLProps<HTMLElement>) => {
+    if (props.className?.includes('language-')) {
+      return <CodeBlock {...props} />;
+    }
+    return <code className="bg-muted px-1 py-0.5 rounded text-sm" {...props} />;
+  },
+  pre: (props: React.HTMLProps<HTMLPreElement>) => (
+    <pre className="rounded-lg overflow-auto text-sm font-mono" {...props} />
+  ),
   ul: (props: React.HTMLProps<HTMLUListElement>) => (
     <ul className="my-4 pl-6 space-y-2 list-disc" {...props} />
   ),
@@ -74,12 +88,6 @@ const components = {
   blockquote: (props: React.HTMLProps<HTMLQuoteElement>) => (
     <blockquote
       className="border-l-4 border-primary/40 pl-4 py-3 my-6 text-muted-foreground italic bg-muted/5 rounded-lg"
-      {...props}
-    />
-  ),
-  code: (props: React.HTMLProps<HTMLElement>) => (
-    <code
-      className="bg-muted px-2 py-1 rounded-md text-sm font-mono text-foreground/90"
       {...props}
     />
   ),
@@ -128,6 +136,8 @@ export default async function PostPage({
 
   const categoryUrl = `/${category}`;
 
+  const stats = readingTime(content);
+
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       {/* Breadcrumb */}
@@ -141,8 +151,8 @@ export default async function PostPage({
           </li>
           <ChevronRight className="mr-1.5 h-4 w-4" />
           <li className="flex items-center">
-            <Link 
-              href={`/${category}`} 
+            <Link
+              href={`/${category}`}
               className="hover:text-foreground transition-colors"
             >
               {formattedCategory}
@@ -157,18 +167,19 @@ export default async function PostPage({
 
       {/* Article Header */}
       <header className="space-y-4">
-      <Link 
-              href={`/${category}`}
-              className="inline-flex items-center text-sm font-medium text-primary hover:underline"
-            >
-              <ChevronLeft className="mr-1.5 h-4 w-4" />
-              {formattedCategory}
-            </Link>
-            <br />
+        <Link
+          href={`/${category}`}
+          className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+        >
+          <ChevronLeft className="mr-1.5 h-4 w-4" />
+          {formattedCategory}
+        </Link>
+        <br />
         <h1 className="text-4xl font-bold tracking-tight">{frontMatter.title}</h1>
         {frontMatter.description && (
           <p className="text-muted-foreground text-base">{frontMatter.description}</p>
         )}
+        <div className="flex items-center gap-4">
         {frontMatter.date && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
@@ -181,6 +192,12 @@ export default async function PostPage({
             </time>
           </div>
         )}
+        {/* ⏱️ Reading Time */}
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <Clock className="w-4 h-4" />
+          <span>{stats.text}</span> {/* e.g. "3 min read" */}
+        </div>
+        </div>
       </header>
 
       {/* MDX Content */}

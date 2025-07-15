@@ -1,0 +1,85 @@
+---
+title: Initialize the Kubernetes Control Plane
+description: Use kubeadm to initialize the Kubernetes control plane on the master node.
+date: 2025-07-15
+---
+
+import CodeBlock from '@/components/CodeBlock';
+
+# 🧭 Step 3: Initialize the Kubernetes Control Plane
+
+In this step, you'll use `kubeadm` to initialize the Kubernetes cluster from the control plane node.
+
+> ✅ **Tip**: Replace `<your-node-hostname>` with names like `cp-node-1`, `worker-1`, etc., to keep things clear.
+
+---
+
+## 📍 On the Control Plane Node (`cp-node-1`)
+
+Run the following command:
+
+```bash
+sudo kubeadm init \
+  --apiserver-advertise-address=192.168.56.110 \
+  --pod-network-cidr=10.244.0.0/16
+```
+
+### 🔍 Explanation
+
+- `--apiserver-advertise-address`: This is the IP address of your control plane node.
+- `--pod-network-cidr`: Required for the Pod network. For example, Flannel uses `10.244.0.0/16`.
+
+---
+
+## 🖥️ Example Output
+
+You should see output ending like this:
+
+```bash
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+---
+
+## 🛠 Configure kubectl Access
+
+Now copy the `admin.conf` to your user's `.kube` directory:
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+Once done, test access using:
+
+```bash
+kubectl get nodes
+```
+
+You should see the control plane node in a `NotReady` state—this is expected because the pod network is not yet installed.
+
+---
+
+## 🔧 What kubeadm Did
+
+- Created `/etc/kubernetes/manifests/` containing static pod definitions for:
+  - `kube-apiserver`
+  - `kube-controller-manager`
+  - `kube-scheduler`
+- Set up a working etcd and control plane environment.
+- Generated all required certificates.
+
+---
+
+## ⏭ Next Step
+
+Now that the control plane is ready, let's install a **Pod network plugin**.
+
+👉 [Continue to Install Pod Network Plugin →](/docs/kubernetes/install-pod-network)

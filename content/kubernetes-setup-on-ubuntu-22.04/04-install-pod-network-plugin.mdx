@@ -1,0 +1,77 @@
+---
+title: Install Pod Network Plugin
+description: Install a Pod network plugin like Flannel to enable communication between Kubernetes pods.
+date: 2025-07-15
+---
+
+
+# 🌐 Step 4: Install a Pod Network Plugin
+
+After the Kubernetes control plane is initialized, the cluster nodes can’t communicate until a Pod network plugin is installed.
+
+---
+
+## Why is this necessary?
+
+Kubernetes requires a network plugin to allow Pods running on different nodes to communicate with each other. Without it, nodes will stay in `NotReady` status.
+
+---
+
+## 🔧 Installing Flannel (Recommended)
+
+Flannel is a simple and widely used network plugin for Kubernetes.
+
+Run this command **on the control plane node (`cp-node-1`)**:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+
+---
+
+## 🖥️ Verify the Pod Network Plugin
+
+Check if the `kube-flannel` pods are running:
+
+```bash
+kubectl get pods -n kube-system -o wide | grep flannel
+```
+
+Wait for all Flannel pods to be in `Running` status.
+
+---
+
+## ✅ Check Node Status
+
+After Flannel is running, your nodes should transition to `Ready` state.
+
+Verify nodes:
+
+```bash
+kubectl get nodes
+```
+
+---
+
+## Troubleshooting
+
+- If nodes remain `NotReady` for a long time:
+  - Check the Flannel pod logs:  
+```bash
+  kubectl logs -n kube-system <flannel-pod-name>
+  ```
+  - Verify firewall rules or network policies aren’t blocking traffic.
+
+---
+
+## ⏭ Next Steps
+
+Your Kubernetes cluster is now operational with a network plugin installed.
+
+Next, you can:
+
+- Deploy your first workloads.
+- Set up cluster add-ons (metrics-server, dashboard).
+- Configure storage classes for persistent storage.
+
+👉 [Go to Page 5: Deploy Your First Kubernetes Workload →](/docs/kubernetes/deploy-workload)

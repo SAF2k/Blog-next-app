@@ -1,0 +1,67 @@
+---
+title: Scaling and Updating Deployments
+description: Learn how to scale your deployments and perform rolling updates.
+date: 2025-07-15
+---
+
+# 📈 Step 6: Scaling and Updating Deployments
+
+After deploying your first workload, it's important to know how to scale and update your applications smoothly.
+
+---
+
+## 🔧 Scaling a Deployment
+
+To scale your deployment to 3 replicas, run:
+
+```bash
+kubectl scale deployment nginx --replicas=3
+```
+
+Check the updated pods:
+
+```bash
+kubectl get pods
+```
+
+## 🚀 Rolling Updates
+
+Update your deployment's image to a newer version:
+
+```bash
+kubectl set image deployment/nginx nginx=nginx:1.21.1
+```
+
+Monitor the rollout status:
+
+```bash
+kubectl rollout status deployment/nginx
+```
+
+## ⏪ Rollback if Needed
+
+If an update causes issues, rollback to the previous version:
+
+```bash
+kubectl rollout undo deployment/nginx
+```
+
+## 🧹 Clean Up
+
+To delete your deployment and service:
+
+```bash
+kubectl delete deployment nginx
+kubectl delete service nginx
+```
+
+---
+
+## ⏭ Next Steps
+
+Explore advanced topics like:
+- Persistent storage
+- Secrets management
+- Monitoring
+- Advanced networking
+- Resource limits and requests

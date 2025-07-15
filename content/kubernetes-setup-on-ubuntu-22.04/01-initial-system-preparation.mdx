@@ -1,0 +1,136 @@
+---
+title: "Page 1: Initial System Preparation"
+description: "Prepare Ubuntu 22.04 nodes for Kubernetes installation by setting hostnames, configuring networking, disabling swap, and installing essential packages."
+date: "15-Jul-2025"
+---
+
+# 🧱 Kubernetes Setup on Ubuntu 22.04  
+## Page 1: Initial System Preparation
+
+This section outlines the foundational steps to prepare your Ubuntu 22.04 nodes before Kubernetes installation. These steps apply to both control plane and worker nodes.
+
+---
+
+## 📌 Overview
+
+In this phase, we will:
+
+- Set hostnames and update the `/etc/hosts` file  
+- Configure system timezone and time synchronization  
+- Disable swap permanently  
+- Install essential networking and system packages  
+- Set kernel parameters required by Kubernetes
+
+---
+
+## 🖥️ Step 1: Set the Hostname
+
+Each node in your Kubernetes cluster should have a unique, meaningful hostname.
+
+```bash
+sudo hostnamectl set-hostname <your-node-hostname>
+```
+
+> Replace `&lt;your-node-hostname&gt;` with something like `cp-node-1`, `worker-1`, etc.
+
+---
+
+## 🗂️ Step 2: Configure `/etc/hosts`
+
+Append all node IPs and hostnames to the `/etc/hosts` file so they can resolve each other within the private network.
+
+```bash
+sudo tee -a /etc/hosts <<EOF
+
+# Control Plane Nodes
+10.x.x.11   cp-node-1
+10.x.x.12   cp-node-2
+10.x.x.13   cp-node-3
+
+# Worker Nodes
+10.x.x.21   worker-node-1
+10.x.x.22   worker-node-2
+
+# Optional: Monitoring, Storage, GitLab, etc.
+10.x.x.31   monitor-node-1
+10.x.x.41   storage-node-1
+
+EOF
+```
+
+> ⚠️ Update the IPs and hostnames to reflect your actual network configuration.
+
+---
+
+## ⏰ Step 3: Configure Timezone and Time Sync (Chrony)
+
+Accurate time sync is critical for cluster coordination.
+
+```bash
+sudo apt update -y
+sudo apt install chrony -y
+
+sudo systemctl enable chrony
+sudo systemctl restart chrony
+
+# Set system timezone
+sudo timedatectl set-timezone Asia/Kolkata
+```
+
+---
+
+## 📦 Step 4: Install Required System Packages
+
+Install tools that are required for further configuration and Kubernetes setup.
+
+```bash
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg \
+  software-properties-common vim git wget
+```
+
+---
+
+## 🚫 Step 5: Disable Swap (Required by Kubernetes)
+
+Kubernetes does **not support swap**, so disable it:
+
+```bash
+sudo sed -i '/swap.img/s/^/#/g' /etc/fstab
+sudo swapoff -a
+```
+
+We'll automate swap disabling at boot in a later section.
+
+---
+
+## 🌐 Step 6: Configure Kernel Networking Parameters
+
+Enable the required networking options for Kubernetes pods and services:
+
+```bash
+sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+# Apply the settings immediately
+sudo sysctl --system
+```
+
+---
+
+## ✅ Summary
+
+At this stage, your system is:
+
+- Named and networked correctly  
+- Using accurate time via Chrony  
+- Updated and prepared with necessary packages  
+- Swap is disabled  
+- Kernel networking is ready for Kubernetes
+
+---
+
+> 🟢 **Next Step:** Install and configure **Docker** and Kubernetes binaries.  
+Please confirm if you’d like to continue to **Page 2: Docker & Kubernetes Installation**, or suggest any edits to this page.

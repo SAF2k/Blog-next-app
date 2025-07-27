@@ -184,11 +184,20 @@ export default async function PostPage({
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
             <time dateTime={frontMatter.date}>
-              {new Date(frontMatter.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+              {(() => {
+                try {
+                  const date = new Date(frontMatter.date);
+                  if (isNaN(date.getTime())) throw new Error('Invalid date');
+                  return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  });
+                } catch (error) {
+                  console.error('Error formatting date:', error);
+                  return 'Invalid date';
+                }
+              })()}
             </time>
           </div>
         )}

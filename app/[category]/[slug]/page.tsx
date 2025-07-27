@@ -184,7 +184,7 @@ export default async function PostPage({
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
             <time dateTime={frontMatter.date}>
-              {new Date(frontMatter.date).toLocaleDateString('en-toUpperCase', {
+              {new Date(frontMatter.date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',

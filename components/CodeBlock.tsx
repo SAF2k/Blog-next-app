@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-// Using atomDark as the base, but we'll override certain colors via customStyle
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import MermaidChart from './MermaidChart'; // <--- Import MermaidChart here!
 
 type SupportedLanguage = keyof typeof SUPPORTED_LANGUAGES;
 
@@ -37,25 +37,34 @@ const SUPPORTED_LANGUAGES = {
     'sql': 'sql',
     'css': 'css',
     'scss': 'scss',
-    'less': 'less'
+    'less': 'less',
+    // Add 'mermaid' here so it's recognized, even though it's handled differently
+    'mermaid': 'mermaid',
   } as const;
 
 interface CodeBlockProps {
   children?: React.ReactNode;
-  language?: string;
-  className?: string;
+  language?: string; // This will come from `className="language-xyz"`
+  className?: string; // This will also contain `language-xyz`
   showLineNumbers?: boolean;
 }
 
 export default function CodeBlock({
   children,
-  language,
+  language, // This prop might be redundant if `className` is always available
   className,
   showLineNumbers = false,
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const [code, setCode] = useState('');
-  const [displayLanguage, setDisplayLanguage] = useState<string>('bash');
+
+  // Extract the language from className (e.g., "language-bash")
+  const extractedLanguage = className?.match(/language-(\w+)/)?.[1] || language || 'text';
+  
+  // Normalize the language for display and lookup in SUPPORTED_LANGUAGES
+  const normalizedDisplayLanguage = (extractedLanguage.toLowerCase().trim() as SupportedLanguage);
+  const displayLanguage = SUPPORTED_LANGUAGES[normalizedDisplayLanguage] || 'text';
+
 
   useEffect(() => {
     if (typeof children === 'string') {
@@ -64,15 +73,6 @@ export default function CodeBlock({
       setCode(children.map(child => typeof child === 'string' ? child : '').join('').trim());
     }
   }, [children]);
-
-  useEffect(() => {
-    if (language) {
-      // Get the supported language or fall back to 'bash'
-      const normalizedLang = language.toLowerCase().trim() as SupportedLanguage;
-      const supportedLang = SUPPORTED_LANGUAGES[normalizedLang] || 'bash';
-      setDisplayLanguage(supportedLang);
-    }
-  }, [language]);
 
   const handleCopy = async () => {
     try {
@@ -85,9 +85,15 @@ export default function CodeBlock({
     }
   };
 
+  // --- Crucial change here: Render MermaidChart for 'mermaid' language ---
+  if (displayLanguage === 'mermaid') {
+    return <MermaidChart chart={code} />;
+  }
+  // --- End of crucial change ---
+
   return (
     <div className={`relative group my-4 ${className || ''}`}>
-      {/* Language label - now using theme-aware colors */}
+      {/* Language label */}
       <span
         className="absolute top-2 left-4 z-10 text-xs font-mono px-2 py-0.5 rounded-md 
                    bg-blue-500/10 text-blue-500 border border-blue-500/50 

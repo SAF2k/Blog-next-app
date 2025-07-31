@@ -302,3 +302,122 @@ flowchart LR
 
 ```
 
+--- 
+
+## 🧪 Wireshark – Protocol Analyzer
+
+Wireshark is a free and powerful tool used to **capture and analyze network traffic** at a granular level.
+
+### 🔍 What Wireshark Can Do:
+- Inspect packets in real time.
+- Decode various protocols (HTTP, TCP, DNS, etc.).
+- Apply filters to focus on specific traffic.
+- Identify abnormal or malicious activity.
+- Follow TCP streams and reconstruct sessions.
+
+### 🛠️ Use Cases:
+- Troubleshooting network problems.
+- Debugging protocol implementations.
+- Network performance monitoring.
+- Security forensics and investigation.
+
+> Wireshark operates in **promiscuous mode** to capture all packets visible to the interface.
+
+```mermaid
+flowchart TD
+    UserPC[(User's PC)]
+    NIC[Network Interface Card]
+    Promiscuous[Promiscuous Mode Enabled]
+    Wireshark[Wireshark Packet Analyzer]
+    Internet[(Network/Internet)]
+
+    Internet -->|Traffic| NIC
+    NIC --> Promiscuous
+    Promiscuous --> Wireshark
+    Wireshark -->|Displays Packets| UserPC
+
+    classDef boxStyle fill:#f9f,stroke:#333,stroke-width:1px,color:#000;
+    class NIC,Promiscuous,Wireshark boxStyle;
+```
+
+
+---
+
+## 📡 Netstat – Network Statistics
+
+Netstat is a built-in command-line tool that provides information about **network connections, routing tables, and interface stats**.
+
+### 📋 Common `netstat` Commands:
+
+| Command | Description |
+|---------|-------------|
+| `netstat -a` | Displays all connections and listening ports |
+| `netstat -n` | Shows IP addresses and port numbers numerically |
+| `netstat -o` | Shows owning process ID for each connection |
+| `netstat -e` | Shows Ethernet statistics |
+| `netstat -s` | Displays statistics by protocol |
+| `netstat -r` | Shows the routing table |
+| `netstat -anob` | Displays all connections with numeric IPs, owners, and binaries (Windows) |
+
+### 🧠 Explanation Flow:
+1. Use `netstat -a` to see open ports.
+2. Use `netstat -n` to match raw IP addresses and ports.
+3. Combine with `-o` to identify which process is using a connection.
+4. Use `Task Manager` or `Process Explorer` to investigate the PID.
+
+```mermaid
+flowchart LR
+    A[User Runs netstat Command] --> B{Choose an Option}
+
+    subgraph "Netstat Options"
+        direction LR
+        B --> B1["-a: All Connections & Listening Ports"]
+        B --> B2["-n: Numerical IPs & Ports"]
+        B --> B4["-e: Ethernet Statistics"]
+        B --> B5["-s: Protocol Statistics"]
+        B --> B6["-r: Routing Table"]
+        B --> B7["-anob: All, Numeric, Owner, Binary (Windows Only)"]
+        B --> B3["-o: Show Process ID (PID)"]
+    end
+
+    subgraph "Investigating PIDs with -o"
+        direction LR  // Set this subgraph to Left to Right (Horizontal)
+        B3 -- Leads to --> C[Note PID of a Suspicious Connection]
+        C --> D[Use Task Manager or Process Explorer]
+        D --> E[Identify Application by PID]
+    end
+
+    classDef cmdStyle fill:#d0f0fd,stroke:#007acc,stroke-width:2px,color:#000;
+    class A,B,B1,B2,B3,B4,B5,B6,B7,C,D,E cmdStyle;
+```
+
+---
+
+## 🧭 Process Explorer (Bonus)
+
+Process Explorer from Microsoft Sysinternals gives deep insight into running processes.
+
+### 🔍 Why Use It:
+- View process tree and hierarchy.
+- Inspect which process has a file, directory, or port open.
+- Identify suspicious or heavy processes.
+- Investigate the origin of a PID found via Netstat.
+
+> It's like **Task Manager on steroids**.
+
+```mermaid
+flowchart TD
+    A[Start with PID from netstat] --> B[Open Process Explorer]
+    B --> C{Search for PID}
+    C --> D[View Process Tree]
+    D --> E[Inspect Process Details]
+    E --> F[Check File Handles / Ports / Threads]
+    F --> G{Is it Suspicious?}
+    G -- Yes --> H[Kill Process or Investigate Further]
+    G -- No --> I[Mark as Safe]
+
+    classDef peStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px,color:#000;
+    class B,C,D,E,F,G,H,I peStyle;
+```
+
+

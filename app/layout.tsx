@@ -6,6 +6,7 @@ import { Home, BookOpen, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Analytics } from "@vercel/analytics/next"
 
 
 export const metadata: Metadata = {
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="min-h-[calc(100vh-4rem)]">
                 <div className="px-4 sm:px-6 lg:px-8 py-6 mx-auto max-w-7xl">
                   {children}
+                  <Analytics />
                 </div>
               </div>
             </main>

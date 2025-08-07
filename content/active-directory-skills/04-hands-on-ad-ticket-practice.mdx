@@ -1,0 +1,244 @@
+---
+title: Hands-on Active Directory Ticket Practice
+description: Practice common Active Directory support scenarios. Read each ticket, consider the questions, and check your understanding with the provided answers.
+---
+
+# Hands-on Active Directory Ticket Practice
+
+Practice common Active Directory support scenarios. Read each ticket, consider the questions, and check your understanding with the provided answers.
+
+---
+
+## Scenario 1: User Cannot Log In to Domain
+
+**Ticket:**  
+User John Doe cannot log in to his domain-joined computer using domain credentials.
+
+### What would you check first? (Select all that apply)
+
+- [ ] Verify the user’s AD account is not locked or disabled  
+- [ ] Confirm the computer is connected to the network  
+- [ ] Reset the user’s password immediately  
+- [ ] Check if the computer is joined to the correct domain  
+- [ ] Restart the domain controller  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+- ✅ Verify the user’s AD account status (locked/disabled)  
+- ✅ Check network connectivity for the client machine  
+- ✅ Confirm the computer is correctly joined to the domain  
+
+Resetting password should be done after verifying identity, not immediately. Restarting domain controller is usually unnecessary.
+
+</details>
+
+---
+
+## Scenario 2: Password Reset Request
+
+**Ticket:**  
+Jane Smith forgot her password and cannot access corporate resources.
+
+### What is the proper way to handle this?
+
+- [ ] Verify user identity before any reset  
+- [ ] Use Active Directory Users and Computers to reset the password  
+- [ ] Set a temporary password and force change at next login  
+- [ ] Notify the user securely with the new password  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+All these steps are important: verify identity first, reset password properly, set a temporary password with mandatory change, and communicate securely.
+
+</details>
+
+---
+
+## Scenario 3: User Needs Access to Shared Folder
+
+**Ticket:**  
+Bob reports permission denied when accessing the Finance shared folder.
+
+### How do you troubleshoot?
+
+- [ ] Add Bob to the correct security group with access rights  
+- [ ] Manually change permissions on every file in the folder  
+- [ ] Recreate Bob’s user account in AD  
+- [ ] Confirm Bob is logging in with the right domain account  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+- ✅ Add Bob to the proper security group  
+- ✅ Confirm login account correctness  
+
+Manually changing every file is inefficient. Recreating the account is not necessary unless corrupted.
+
+</details>
+
+---
+
+## Scenario 4: New Employee Setup
+
+**Ticket:**  
+You have a new employee starting tomorrow and need to set up their account, email, and access rights.
+
+### Which steps would you perform? (Select all that apply)
+
+- [ ] Create a new user account in Active Directory  
+- [ ] Add the user to relevant security groups  
+- [ ] Assign appropriate permissions on shared drives  
+- [ ] Set up email account in Microsoft Exchange or Office 365  
+- [ ] Configure user’s computer with domain join and required software  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+All these steps are necessary to ensure the new employee can work efficiently on day one.
+
+</details>
+
+---
+
+## Scenario 5: Computer Not Joining Domain
+
+**Ticket:**  
+A workstation fails to join the domain and shows an error.
+
+### What would you check?
+
+- [ ] Verify network connectivity and DNS settings on the workstation  
+- [ ] Check if the computer account already exists in AD  
+- [ ] Confirm the user has permissions to join computers to the domain  
+- [ ] Restart the domain controller  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+- ✅ Check network and DNS configurations  
+- ✅ Remove or reset existing computer accounts if needed  
+- ✅ Verify user permissions for domain join operations  
+
+Restarting the domain controller is generally unnecessary.
+
+</details>
+
+---
+
+## Scenario 6: Account Locked Out
+
+**Ticket:**  
+User Sarah keeps getting locked out repeatedly.
+
+### What steps should you take to troubleshoot?
+
+- [ ] Check the account lockout status and unlock if necessary  
+- [ ] Investigate possible causes like saved passwords on mobile or mapped drives  
+- [ ] Check security logs on domain controllers for lockout source  
+- [ ] Advise the user to change password and clear cached credentials  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+Investigating the root cause prevents repeated lockouts and improves user experience.
+
+</details>
+
+---
+
+## Scenario 7: Group Policy Not Applying
+
+**Ticket:**  
+Users report that some group policies are not being applied on their machines.
+
+### How would you diagnose and fix?
+
+- [ ] Run `gpupdate /force` on client machines  
+- [ ] Check network connectivity to the domain controller  
+- [ ] Verify GPO scope and security filtering  
+- [ ] Review Event Viewer logs for Group Policy errors  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+This step-by-step approach helps pinpoint the policy application issue.
+
+</details>
+
+---
+
+## Scenario 8: Delegating Permissions
+
+**Ticket:**  
+You need to allow a junior admin to reset passwords but restrict access to other AD objects.
+
+### What is the best approach?
+
+- [ ] Use Delegation of Control Wizard in Active Directory Users and Computers  
+- [ ] Give full domain admin rights temporarily  
+- [ ] Create a custom security group and assign specific permissions  
+- [ ] Share your admin credentials  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+- ✅ Use Delegation of Control Wizard or assign least privilege permissions via custom groups.  
+Sharing credentials or full domain admin rights violates best practices.
+
+</details>
+
+---
+
+## Scenario 9: Removing a User from Domain
+
+**Ticket:**  
+An employee has left the company, and their account needs to be disabled or removed.
+
+### What is the recommended process?
+
+- [ ] Disable the user account immediately  
+- [ ] Remove the account after a defined period following company policy  
+- [ ] Revoke access to all systems and shared resources  
+- [ ] Archive or backup user data as per compliance requirements  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+Disabling accounts immediately and then cleaning up later prevents unauthorized access.
+
+</details>
+
+---
+
+## Scenario 10: DNS Issues Affecting AD
+
+**Ticket:**  
+Users report slow logins and intermittent issues connecting to the domain.
+
+### What might be the cause and how to fix?
+
+- [ ] Check DNS server health and configuration  
+- [ ] Verify client machines use correct DNS servers  
+- [ ] Check domain controller connectivity and replication status  
+- [ ] Restart all client machines  
+
+<details>
+<summary>Answers & Explanation</summary>
+
+DNS problems are common causes of AD connectivity issues. Ensuring proper DNS setup fixes most problems. Restarting clients helps but isn’t always sufficient.
+
+</details>
+
+---
+
+## Tips for Active Directory Support
+
+- Always document your actions and changes.  
+- Follow security policies carefully, especially on password resets.  
+- Communicate timelines and next steps clearly to users.
+
+---
+
+Use this guide as a reference for your practical AD support work. The best way to learn is by practicing these steps in a lab environment.

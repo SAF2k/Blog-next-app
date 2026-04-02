@@ -6,9 +6,12 @@ import { ArrowLeft, ChevronLeft, Calendar, ChevronRight, HomeIcon, Clock } from 
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import remarkGfm from 'remark-gfm';
-import MermaidChart from '@/components/MermaidChart';
 import readingTime from 'reading-time';
-import CodeBlock from '@/components/CodeBlock';
+import dynamic from 'next/dynamic';
+
+// Code-split heavy client components — they load in separate chunks after initial paint
+const CodeBlock = dynamic(() => import('@/components/CodeBlock'));
+const MermaidChart = dynamic(() => import('@/components/MermaidChart'));
 
 interface FrontMatter {
   title: string;

@@ -26,14 +26,12 @@ export default async function Home() {
             </p>
             
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="#categories">
-                <Button asChild size="lg" className="gap-2">
-                  <span>
-                    <BookMarked className="h-4 w-4" />
-                    Browse Categories
-                  </span>
-                </Button>
-              </Link>
+              <Button asChild size="lg" className="gap-2">
+                <Link href="#categories">
+                  <BookMarked className="h-4 w-4" />
+                  Browse Categories
+                </Link>
+              </Button>
               <SearchButton />
             </div>
           </div>
@@ -80,16 +78,12 @@ export default async function Home() {
               Can&apos;t find what you&apos;re looking for? Our support team is here to help you with any questions or issues you might have.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="https://safwatkhan.vercel.app/contact">
-                <Button asChild size="lg" className="gap-2">
-                  <span>Contact Support</span>
-                </Button>
-              </Link>
-              <Link href="/docs/guide">
-                <Button asChild variant="outline" size="lg">
-                  <span>View Documentation Guide</span>
-                </Button>
-              </Link>
+              <Button asChild size="lg" className="gap-2">
+                <Link href="https://safwatkhan.vercel.app/contact">Contact Support</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/docs/guide">View Documentation Guide</Link>
+              </Button>
             </div>
           </div>
         </div>
